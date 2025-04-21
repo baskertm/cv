@@ -1,3 +1,17 @@
+  for (let a of asteroids) {
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, a.size, 0, 2 * Math.PI);
+    ctx.fillStyle = '#999';
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = '#888';
+    ctx.fill();
+    a.x += a.dx;
+    a.y += a.dy;
+    if (a.x < 0) a.x = canvas.width;
+    if (a.x > canvas.width) a.x = 0;
+    if (a.y < 0) a.y = canvas.height;
+    if (a.y > canvas.height) a.y = 0;
+  }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -165,7 +179,6 @@
 <script>
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
-  let stars = [], shootingStars = [];
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -185,8 +198,6 @@
     }
   }
 
-  function createShootingStar() {
-    shootingStars.push({
       x: Math.random() * canvas.width,
       y: 0,
       length: Math.random() * 300 + 100,
@@ -194,6 +205,20 @@
       opacity: 1
     });
   }
+
+let asteroids = [];
+
+function createAsteroids() {
+  for (let i = 0; i < 8; i++) {
+    asteroids.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 6 + 2,
+      dx: Math.random() * 1.5 - 0.75,
+      dy: Math.random() * 1.5 - 0.75
+    });
+  }
+}
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -207,8 +232,6 @@
       if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
     }
 
-    for (let i = shootingStars.length - 1; i >= 0; i--) {
-      const s = shootingStars[i];
       ctx.beginPath();
       ctx.moveTo(s.x, s.y);
       ctx.lineTo(s.x - s.length, s.y + s.length);
@@ -218,7 +241,6 @@
       s.x += s.speed * 0.8;
       s.y += s.speed * 0.8;
       s.opacity *= 0.95;
-      if (s.opacity <= 0) shootingStars.splice(i, 1);
     }
 
     requestAnimationFrame(draw);
@@ -226,13 +248,13 @@
 
   
   setInterval(() => {
-    if (Math.random() < 0.5) createShootingStar();
   }, 3000);
     
 
   window.addEventListener('resize', () => {
     resizeCanvas();
     createStars();
+createAsteroids();
   });
 
   resizeCanvas();
