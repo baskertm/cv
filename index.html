@@ -13,17 +13,6 @@
       color: #fff;
       overflow-x: hidden;
     }
-<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function () {
-      setTimeout(() => {
-        alert("Message sent! I’ll get back to you soon.");
-      }, 1000);
-    });
-  });
-</script>
-    <head>
     canvas {
       position: fixed;
       top: 0;
@@ -137,6 +126,16 @@
       color: #aaa;
     }
   </style>
+  <script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function () {
+      setTimeout(() => {
+        alert("Message sent! I’ll get back to you soon.");
+      }, 1000);
+    });
+  });
+</script>
 </head>
 <body>
 <canvas id="stars"></canvas>
