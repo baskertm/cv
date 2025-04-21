@@ -213,18 +213,22 @@
       ctx.moveTo(s.x, s.y);
       ctx.lineTo(s.x - s.length, s.y + s.length);
       ctx.strokeStyle = `rgba(255,255,255,${s.opacity})`;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = Math.random() * 2 + 1;
       ctx.stroke();
-      s.x += s.speed;
-      s.y += s.speed;
-      s.opacity -= 0.01;
+      s.x += s.speed * 0.8;
+      s.y += s.speed * 0.8;
+      s.opacity *= 0.95;
       if (s.opacity <= 0) shootingStars.splice(i, 1);
     }
 
     requestAnimationFrame(draw);
   }
 
-  setInterval(createShootingStar, 5000);
+  
+  setInterval(() => {
+    if (Math.random() < 0.5) createShootingStar();
+  }, 3000);
+    
 
   window.addEventListener('resize', () => {
     resizeCanvas();
