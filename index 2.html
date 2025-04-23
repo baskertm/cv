@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baskar Galactic Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0b0b1f 0%, #000000 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    header {
+      background-image: url('jupiter_banner.jpg');
+      background-size: cover;
+      background-position: center;
+      animation: wave 15s infinite linear;
+      text-align: center;
+      color: #00ff88;
+      padding: 100px 20px 80px;
+      position: relative;
+      box-shadow: 0 0 30px #00ffaa;
+    }
+
+    @keyframes wave {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1000px; }
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px #00ff88;
+    }
+
+    header p {
+      font-size: 1.3rem;
+    }
+
+    .resume-button {
+      margin-top: 20px;
+      display: inline-block;
+      background: #00ff88;
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 12px #00ffaa;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .projects img {
+      width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ff88;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .projects img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #00ffaa;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px #00ff88;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: #00ff88;
+    }
+
+    button {
+      background: #00ff88;
+      color: #000;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    button:hover {
+      background-color: #00cc77;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<header>
+  <h1>Baskar Portfolio</h1>
+  <p>Creative | Bold | Galactic Designs</p>
+  <a class="resume-button" href="baskar_resume.pdf" download>Download My Resume</a>
+</header>
+
+<section>
+  <h2>My Projects</h2>
+  <div class="projects">
+    <img src="logo1.png" alt="Project 1" />
+    <img src="logo2.png" alt="Project 2" />
+    <img src="logo3.png" alt="Project 3" />
+    <img src="logo4.png" alt="Project 4" />
+    <img src="logo5.png" alt="Project 5" />
+  </div>
+</section>
+
+<section>
+  <h2>Contact Me</h2>
+  <form action="YOUR_FORMSPREE_URL" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="_replyto" placeholder="Your Email" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+    <input type="hidden" name="_subject" value="New Portfolio Contact" />
+    <input type="hidden" name="_autoresponse" value="Hi, thanks for reaching out! I’ve received your message and will get back to you soon. – Baskar" />
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>&copy; 2025 Baskar. All rights reserved.</footer>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [], shootingStars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02
+      });
+    }
+  }
+
+  function createShootingStar() {
+    shootingStars.push({
+      x: Math.random() * canvas.width,
+      y: 0,
+      length: Math.random() * 300 + 100,
+      speed: Math.random() * 10 + 6,
+      opacity: 1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.fill();
+      star.alpha += star.delta;
+      if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
+    }
+
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - s.length, s.y + s.length);
+      ctx.strokeStyle = `rgba(255,255,255,${s.opacity})`;
+      ctx.lineWidth = Math.random() * 2 + 1;
+      ctx.stroke();
+      s.x += s.speed * 0.8;
+      s.y += s.speed * 0.8;
+      s.opacity *= 0.95;
+      if (s.opacity <= 0) shootingStars.splice(i, 1);
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  
+  setInterval(() => {
+    if (Math.random() < 0.5) createShootingStar();
+  }, 3000);
+    
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createStars();
+  });
+
+  resizeCanvas();
+  createStars();
+  draw();
+</script>
+</body>
+</html>
