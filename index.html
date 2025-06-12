@@ -204,90 +204,6 @@ html {
 
 /* Font Awesome Icon */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
-.bottom-navbar {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  border-radius: 12px;
-  padding: 10px;
-  z-index: 999;
-  width: 60px;
-  height: 60px;
-  transition: all 0.3s ease;
-}
-
-/* Hidden toggle input */
-.nav-toggle {
-  display: none;
-}
-
-/* Hamburger icon */
-.hamburger {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  gap: 5px;
-}
-
-.hamburger span {
-  display: block;
-  width: 30px;
-  height: 3px;
-  background: #000;
-  border-radius: 3px;
-  transition: 0.3s;
-}
-
-/* Menu hidden by default */
-.nav-menu {
-  display: none;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* When checked, show the menu */
-.nav-toggle:checked ~ .nav-menu {
-  display: flex;
-  background: rgba(255,255,255,0.95);
-  padding: 20px;
-  border-radius: 16px;
-  position: absolute;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
-
-/* Nav links */
-.nav-menu a {
-  color: #000;
-  text-decoration: none;
-  font-size: 22px;
-  transition: transform 0.3s ease;
-}
-
-.nav-menu a:hover {
-  transform: scale(1.2);
-  color: #0077ff;
-}
-
-/* Profile DP Icon */
-.dp-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #000;
-}
-
   <script>
   window.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
@@ -427,21 +343,6 @@ html {
 <div class="bubble-lang-switch">
   <a href="https://baskertm.github.io/ta" class="bubble">தமிழ்</a>
 </div>
-<nav class="bottom-navbar">
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-  
-  <label for="nav-toggle" class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </label>
-  
-  <div class="nav-menu">
-    <a href="tamil.html" title="தமிழ் பக்கம்">த</a>
-    <a href="resume.pdf" download title="Download Resume"><i class="fas fa-file-alt"></i></a>
-    <a href="#contact" title="Contact"><img src="profile.jpg" alt="DP" class="dp-icon" /></a>
-  </div>
-</nav>
 <script>
   // Replace this with your actual Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxoW2EwNM5RRqBWynMSfqytOzuVpbQPZpfCYfAm3KVmqtb_-lKE64EWGdXA5AOKMYf1GQ/exec";
