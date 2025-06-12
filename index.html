@@ -199,85 +199,95 @@ html {
   color: #1e1e1e;
   box-shadow: 0 0 12px #00ffcc, 0 0 24px #00ffcc;
 }
-    /* FontAwesome for resume icon */
+/* Font Awesome Icon */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fefefe; /* Pearl white */
-  padding: 10px 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border-radius: 20px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 960px;
-  height: 60px;
+.bottom-navbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  padding: 10px;
   z-index: 999;
-  position: sticky;
-  top: 0;
+  width: 60px;
+  height: 60px;
+  transition: all 0.3s ease;
 }
 
-/* General item style */
-.nav-item {
-  font-size: 24px;
+/* Hidden toggle input */
+.nav-toggle {
+  display: none;
+}
+
+/* Hamburger icon */
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #000;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Menu hidden by default */
+.nav-menu {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* When checked, show the menu */
+.nav-toggle:checked ~ .nav-menu {
+  display: flex;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 16px;
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Nav links */
+.nav-menu a {
   color: #000;
   text-decoration: none;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 22px;
+  transition: transform 0.3s ease;
 }
 
-/* Hover and active effects */
-.nav-item:hover {
-  transform: scale(1.1);
-  color: #333;
-}
-.nav-item:active {
-  transform: scale(0.95);
+.nav-menu a:hover {
+  transform: scale(1.2);
   color: #0077ff;
 }
 
-/* Tamil symbol */
-.nav-item.left {
-  font-family: 'Latha', 'Arial', sans-serif;
-  font-weight: bold;
-}
-
-/* Resume center icon */
-.nav-item.center i {
-  font-size: 28px;
-}
-
-/* Profile DP */
+/* Profile DP Icon */
 .dp-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dp-icon:hover {
-  transform: rotate(5deg) scale(1.05);
-  box-shadow: 0 0 10px #000;
-}
-
-/* Mobile responsive */
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-  }
-  .nav-item {
-    margin: 8px 0;
-  }
-}
-
+    /* FontAwesome for resume icon */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
     </style>
 </style>
   <script>
@@ -419,15 +429,6 @@ html {
 <div class="bubble-lang-switch">
   <a href="https://baskertm.github.io/ta" class="bubble">தமிழ்</a>
 </div>
-<nav class="navbar">
-  <a href="tamil.html" class="nav-item left" title="தமிழ் பக்கம்">த</a>
-  <a href="resume.pdf" class="nav-item center" download title="Download Resume">
-    <i class="fas fa-file-alt"></i>
-  </a>
-  <a href="#contact" class="nav-item right" title="My Profile">
-    <img src="profile.jpg" alt="DP" class="dp-icon" />
-  </a>
-</nav>
 <script>
   // Replace this with your actual Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxoW2EwNM5RRqBWynMSfqytOzuVpbQPZpfCYfAm3KVmqtb_-lKE64EWGdXA5AOKMYf1GQ/exec";
@@ -450,9 +451,25 @@ html {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `page=${page}&action=visit&device=${encodeURIComponent(device)}&ip=${ip}&browser=${browser}`
+        body: `page=${page}&action=visit&device=${encodeURIComponent(device)<nav class="bottom-navbar">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+  
+  <label for="nav-toggle" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  
+  <div class="nav-menu">
+    <a href="tamil.html" title="தமிழ் பக்கம்">த</a>
+    <a href="resume.pdf" download title="Download Resume"><i class="fas fa-file-alt"></i></a>
+    <a href="#contact" title="Contact"><img src="profile.jpg" alt="DP" class="dp-icon" /></a>
+  </div>
+</nav>
+}&ip=${ip}&browser=${browser}`
       });
     });
 </script>
+
 </body>
 </html>
