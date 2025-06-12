@@ -203,82 +203,24 @@ html {
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fefefe; /* Pearl white */
-  padding: 10px 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border-radius: 20px;
-  margin: 20px auto;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 90%;
   max-width: 960px;
   height: 60px;
-  z-index: 999;
-  position: sticky;
-  top: 0;
-}
-
-/* General item style */
-.nav-item {
-  font-size: 24px;
-  color: #000;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.85); /* translucent pearl */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  padding: 10px 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(10px);
 }
-
-/* Hover and active effects */
-.nav-item:hover {
-  transform: scale(1.1);
-  color: #333;
-}
-.nav-item:active {
-  transform: scale(0.95);
-  color: #0077ff;
-}
-
-/* Tamil symbol */
-.nav-item.left {
-  font-family: 'Latha', 'Arial', sans-serif;
-  font-weight: bold;
-}
-
-/* Resume center icon */
-.nav-item.center i {
-  font-size: 28px;
-}
-
-/* Profile DP */
-.dp-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dp-icon:hover {
-  transform: rotate(5deg) scale(1.05);
-  box-shadow: 0 0 10px #000;
-}
-
-/* Mobile responsive */
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-  }
-  .nav-item {
-    margin: 8px 0;
-  }
-}
-
-    </style>
+</style>
 </style>
   <script>
   window.addEventListener("DOMContentLoaded", function () {
