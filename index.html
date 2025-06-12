@@ -24,9 +24,10 @@ body {
     }
     header {
       background-image: url('gift2.gif');
+      background-image: url('jupiter_banner.png')
       background-size: cover;
       background-position: center;
-      animation: waveBounce 5s ease-in-out infinite;
+      animation: slideBackground 10s infinite alternate ease-in-out;
       text-align: center;
       color: #00ff88;
       padding: 100px 20px 80px;
@@ -34,7 +35,7 @@ body {
       box-shadow: 0 0 30px #00ffaa;
     }
 
-    @keyframes wave {
+    @keyframes slideBackground {
       0% { background-position-x: 0; }
       100% { background-position-x: 1000px; }
     }
