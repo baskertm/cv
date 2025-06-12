@@ -199,81 +199,88 @@ html {
   color: #1e1e1e;
   box-shadow: 0 0 12px #00ffcc, 0 0 24px #00ffcc;
 }
-/* FontAwesome Icons */
+/* FontAwesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-.circle-nav {
+.side-nav {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   z-index: 999;
 }
 
-.circle-btn {
+.side-btn {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  border-radius: 12px 0 0 12px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 26px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  justify-content: center;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: 0.3s ease;
+  box-shadow: -4px 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(6px);
+  transition: background 0.3s, transform 0.3s;
 }
 
-.circle-btn:hover {
-  transform: rotate(90deg);
+.side-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
 }
 
-#circle-toggle {
+#side-toggle {
   display: none;
 }
 
-.circle-menu {
+.side-menu {
   position: absolute;
-  bottom: 70px;
-  right: 0;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  transform-origin: right center;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  opacity: 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: -4px 4px 20px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease;
   pointer-events: none;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
+  opacity: 0;
 }
 
-#circle-toggle:checked ~ .circle-menu {
-  opacity: 1;
+#side-toggle:checked ~ .side-menu {
+  transform: translateY(-50%) scale(1);
   pointer-events: auto;
-  transform: translateY(0);
+  opacity: 1;
 }
 
-.circle-menu a {
-  background: rgba(255, 255, 255, 0.95);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.side-menu a {
   color: #000;
-  font-size: 22px;
+  font-size: 20px;
+  text-decoration: none;
+  background: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s, background 0.3s;
 }
 
-.circle-menu a:hover {
+.side-menu a:hover {
   transform: scale(1.2);
-  background: #e0e0e0;
+  background: #eee;
 }
 
-.dp-circle {
-  width: 40px;
-  height: 40px;
+.dp-side {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #000;
@@ -415,24 +422,21 @@ html {
   createStars();
   draw();
 </script>
-<nav class="bottom-navbar">
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-<div class="circle-nav">
-  <input type="checkbox" id="circle-toggle" />
-  <label for="circle-toggle" class="circle-btn">
+<div class="side-nav">
+  <input type="checkbox" id="side-toggle" />
+  <label for="side-toggle" class="side-btn">
     <i class="fas fa-bars"></i>
   </label>
 
-  <div class="circle-menu">
+  <div class="side-menu">
     <a href="tamil.html" title="தமிழ் பக்கம்">த</a>
     <a href="resume.pdf" title="Download Resume" download><i class="fas fa-file-alt"></i></a>
-    <a href="#contact" title="Contact"><img src="profile.jpg" alt="DP" class="dp-circle" /></a>
+    <a href="#contact" title="Contact">
+      <img src="profile.jpg" alt="DP" class="dp-side" />
+    </a>
   </div>
 </div>
-<!-- Floating Bubble Language Switch -->
-<div class="bubble-lang-switch">
-  <a href="https://baskertm.github.io/ta" class="bubble">தமிழ்</a>
-</div>
+
 <script>
   // Replace this with your actual Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxoW2EwNM5RRqBWynMSfqytOzuVpbQPZpfCYfAm3KVmqtb_-lKE64EWGdXA5AOKMYf1GQ/exec";
