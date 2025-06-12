@@ -23,11 +23,10 @@ body {
       z-index: -1;
     }
     header {
-      background-image: url('gift2.gif');
-      background-image: url('jupiter_banner.png')
+      background-image: url('gift2.gif'), url('jupiter_banner.png');
       background-size: cover;
       background-position: center;
-      animation: slideBackground 10s infinite alternate ease-in-out;
+      animation: waveParallax 10s linear infinite;
       text-align: center;
       color: #00ff88;
       padding: 100px 20px 80px;
@@ -35,7 +34,7 @@ body {
       box-shadow: 0 0 30px #00ffaa;
     }
 
-    @keyframes slideBackground {
+    @keyframes waveParallax {
       0% { background-position-x: 0; }
       100% { background-position-x: 1000px; }
     }
