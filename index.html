@@ -245,26 +245,13 @@ html {
   display: none;
 }
 
-.side-menu {
-  position: absolute;
-  right: -3px;
-  top: 250%;
-  transform: translateY(-50%) scale(0);
+.side-nav {
+  position: fixed;
+  top: 10%;
+  right: 100px;
+  transform: translateY(-50%);
   z-index: 999;
-  transform-origin: right center;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
-  box-shadow: -4px 4px 20px rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px);
-  transition: transform 0.4s ease;
-  pointer-events: none;
-  opacity: 0;
 }
-
 #side-toggle:checked ~ .side-menu {
   transform: translateY(-50%) scale(1);
   pointer-events: auto;
