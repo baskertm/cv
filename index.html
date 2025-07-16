@@ -205,12 +205,12 @@ html {
 .side-nav {
   position: fixed;
   top: 10%;
-  right: 0px; /* 🢃 Hides it outside the screen to the right */
+  right: 5px; /* 🢃 Hides it outside the screen to the right */
   transform: translateY(-50%);
   width: 0px;
-  background: black;
+  background: transparent;
   color: white;
-  padding: 10px;
+  padding: 0px;
   border-left: 3px solid #00ff88;
   transition: left 0.3s ease;
   z-index: 999;
@@ -218,7 +218,7 @@ html {
 
 /* 🟢 Slide in when hovered */
 .side-nav:hover {
-  right: 0;
+  right: 4;
 }
 
 .side-btn {
