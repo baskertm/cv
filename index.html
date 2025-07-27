@@ -22,18 +22,64 @@ body {
       height: 100vh;
       z-index: -1;
     }
-    header {
-      background-image: url('gift2.gif'), url('logo3.png');
-      background-size: cover;
-      background-position: center;
-      animation: fade 10s infinite alternate;
-      text-align: center;
-      color: #00ff88;
-      padding: 100px 20px 80px;
-      position: relative;
-      box-shadow: 0 0 30px #00ffaa;
-    }
+    .glass-header {
+  position: relative;
+  height: 300px; /* adjust height like old banner */
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  text-align: center;
+  padding: 100px 20px 80px;
+  box-shadow: 0 0 30px #00ffaa;
+}
 
+.glass-slide {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.05) 100%
+  );
+  backdrop-filter: blur(6px);
+  transform: skewX(-15deg);
+  animation: slideAnim 12s linear infinite;
+  z-index: 0;
+}
+
+.glass-slide:nth-child(2) {
+  animation-delay: 4s;
+}
+.glass-slide:nth-child(3) {
+  animation-delay: 8s;
+}
+
+@keyframes slideAnim {
+  0% { left: -40%; }
+  100% { left: 120%; }
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  color: #00ff88;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.header-content nav a {
+  margin: 0 15px;
+  color: #00ffaa;
+  text-decoration: none;
+  font-weight: bold;
+}
     @keyframes slideBackground {
       0% { background-position-x: 0; }
       100% { background-position-x: 1000px; }
@@ -480,7 +526,14 @@ html {
 </script>
 </head>
 <canvas id="stars"></canvas>
-<header>
+<header class="glass-header">
+  <div class="glass-slide"></div>
+  <div class="glass-slide"></div>
+  <div class="glass-slide"></div>
+
+  #you can add more here in header#
+
+  <div class="header-content">
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
