@@ -22,47 +22,49 @@ body {
       height: 100vh;
       z-index: -1;
     }
-    .glass-header {
-  position: relative;
-  height: 300px; /* adjust height like old banner */
-  width: 100%;
-  overflow: hidden;
-  background: #000;
-  text-align: center;
-  padding: 100px 20px 80px;
-  box-shadow: 0 0 30px #00ffaa;
-}
+    <style>
+  body {
+    margin: 0;
+    background: #000;
+    font-family: sans-serif;
+    overflow-x: hidden;
+  }
 
-.glass-slide {
-  position: absolute;
-  top: 0;
-  left: -30%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.05) 0%,
-    rgba(255,255,255,0.15) 50%,
-    rgba(255,255,255,0.05) 100%
-  );
-  backdrop-filter: blur(6px);
-  transform: skewX(-15deg);
-  animation: slideAnim 12s linear infinite;
-  z-index: 0;
-}
+  header.glass-header {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    background: linear-gradient(to bottom, #111 0%, #000 100%);
+    overflow: hidden;
+  }
 
-.glass-slide:nth-child(2) {
-  animation-delay: 4s;
-}
-.glass-slide:nth-child(3) {
-  animation-delay: 8s;
-}
+  .cuboid {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #00f6ff, #7c00ff);
+    box-shadow: 0 0 6px rgba(255,255,255,0.2);
+    border-radius: 4px;
+    animation: drop 4s linear forwards;
+  }
 
-@keyframes slideAnim {
-  0% { left: -40%; }
-  100% { left: 120%; }
-}
+  @keyframes drop {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(280px);
+    }
+  }
 
+  .stacked {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #00f6ff, #7c00ff);
+    border-radius: 4px;
+    bottom: 0;
+  }
 .header-content {
   position: relative;
   z-index: 2;
@@ -512,6 +514,46 @@ html {
   transform: scale(1.05);
 }
 }
+<script>
+  const header = document.getElementById("cuboid-header");
+  const stackHeight = 14; // Adjust this based on header height
+
+  let columns = Math.floor(window.innerWidth / 24);
+  let stacks = Array(columns).fill(stackHeight);
+
+  function createCuboid(col) {
+    const cuboid = document.createElement("div");
+    cuboid.className = "cuboid";
+    cuboid.style.left = `${col * 24}px`;
+    header.appendChild(cuboid);
+
+    setTimeout(() => {
+      cuboid.remove();
+
+      // Add stacked cuboid
+      const stacked = document.createElement("div");
+      stacked.className = "stacked";
+      stacked.style.left = `${col * 24}px`;
+      stacked.style.bottom = `${stacks[col] * 20}px`;
+
+      header.appendChild(stacked);
+
+      stacks[col]--;
+      if (stacks[col] < 0) {
+        stacks[col] = stackHeight;
+        // Clear stack visually
+        [...header.querySelectorAll('.stacked')].forEach(s => {
+          if (parseInt(s.style.left) === col * 24) s.remove();
+        });
+      }
+    }, 4000);
+  }
+
+  setInterval(() => {
+    let col = Math.floor(Math.random() * columns);
+    createCuboid(col);
+  }, 300);
+</script>
     </style>
 </style>
   <script>
@@ -526,10 +568,7 @@ html {
 </script>
 </head>
 <canvas id="stars"></canvas>
-<header class="glass-header">
-  <div class="glass-slide"></div>
-  <div class="glass-slide"></div>
-  <div class="glass-slide"></div>
+<header class="glass-header" id="cuboid-header"></header>
 
 <!-- Add more slides here -->
   <div class="header-content">
