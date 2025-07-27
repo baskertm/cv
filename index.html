@@ -22,66 +22,18 @@ body {
       height: 100vh;
       z-index: -1;
     }
-    <style>
-  body {
-    margin: 0;
-    background: #000;
-    font-family: sans-serif;
-    overflow-x: hidden;
-  }
-
-  header.glass-header {
-    position: relative;
-    height: 300px;
-    width: 100%;
-    background: linear-gradient(to bottom, #111 0%, #000 100%);
-    overflow: hidden;
-  }
-
-  .cuboid {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, #00f6ff, #7c00ff);
-    box-shadow: 0 0 6px rgba(255,255,255,0.2);
-    border-radius: 4px;
-    animation: drop 4s linear forwards;
-  }
-
-  @keyframes drop {
-    0% {
-      transform: translateY(0);
+    header {
+      background-image: url('gift2.gif'), url('logo3.png');
+      background-size: cover;
+      background-position: center;
+      animation: fade 10s infinite alternate;
+      text-align: center;
+      color: #00ff88;
+      padding: 100px 20px 80px;
+      position: relative;
+      box-shadow: 0 0 30px #00ffaa;
     }
-    100% {
-      transform: translateY(280px);
-    }
-  }
 
-  .stacked {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, #00f6ff, #7c00ff);
-    border-radius: 4px;
-    bottom: 0;
-  }
-.header-content {
-  position: relative;
-  z-index: 2;
-  color: #00ff88;
-}
-
-.header-content h1 {
-  font-size: 3rem;
-  margin: 0;
-}
-
-.header-content nav a {
-  margin: 0 15px;
-  color: #00ffaa;
-  text-decoration: none;
-  font-weight: bold;
-}
     @keyframes slideBackground {
       0% { background-position-x: 0; }
       100% { background-position-x: 1000px; }
@@ -514,46 +466,6 @@ html {
   transform: scale(1.05);
 }
 }
-<script>
-  const header = document.getElementById("cuboid-header");
-  const stackHeight = 14; // Adjust this based on header height
-
-  let columns = Math.floor(window.innerWidth / 24);
-  let stacks = Array(columns).fill(stackHeight);
-
-  function createCuboid(col) {
-    const cuboid = document.createElement("div");
-    cuboid.className = "cuboid";
-    cuboid.style.left = `${col * 24}px`;
-    header.appendChild(cuboid);
-
-    setTimeout(() => {
-      cuboid.remove();
-
-      // Add stacked cuboid
-      const stacked = document.createElement("div");
-      stacked.className = "stacked";
-      stacked.style.left = `${col * 24}px`;
-      stacked.style.bottom = `${stacks[col] * 20}px`;
-
-      header.appendChild(stacked);
-
-      stacks[col]--;
-      if (stacks[col] < 0) {
-        stacks[col] = stackHeight;
-        // Clear stack visually
-        [...header.querySelectorAll('.stacked')].forEach(s => {
-          if (parseInt(s.style.left) === col * 24) s.remove();
-        });
-      }
-    }, 4000);
-  }
-
-  setInterval(() => {
-    let col = Math.floor(Math.random() * columns);
-    createCuboid(col);
-  }, 300);
-</script>
     </style>
 </style>
   <script>
@@ -568,10 +480,7 @@ html {
 </script>
 </head>
 <canvas id="stars"></canvas>
-<header class="glass-header" id="cuboid-header"></header>
-
-<!-- Add more slides here -->
-  <div class="header-content">
+<header>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
