@@ -22,71 +22,22 @@ body {
       height: 100vh;
       z-index: -1;
     }
-    body {
-  margin: 0;
-  background: #000;
-  font-family: sans-serif;
-  overflow-x: hidden;
-}
+    header {
+      background-image: url('gift2.gif'), url('logo3.png');
+      background-size: cover;
+      background-position: center;
+      animation: fade 10s infinite alternate;
+      text-align: center;
+      color: #00ff88;
+      padding: 100px 20px 80px;
+      position: relative;
+      box-shadow: 0 0 30px #00ffaa;
+    }
 
-/* Header */
-header.glass-header {
-  position: relative;
-  height: 300px;
-  width: 100%;
-  background: linear-gradient(to bottom, #111 0%, #000 100%);
-  overflow: hidden;
-  text-align: center;
-  color: #fff;
-}
-
-.header-content {
-  position: relative;
-  z-index: 2;
-  padding-top: 80px;
-}
-
-.header-content h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.header-content nav a {
-  color: #00ffaa;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
-}
-
-/* Cuboid blocks */
-.cuboid {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(45deg, #ff6ec4, #7873f5);
-  border-radius: 5px;
-  box-shadow: 0 0 6px rgba(255,255,255,0.3);
-  animation: fall 4s linear forwards;
-  z-index: 1;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(276px);
-  }
-}
-
-.stacked {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(45deg, #ff6ec4, #7873f5);
-  border-radius: 5px;
-  bottom: 0;
-}
+    @keyframes slideBackground {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1000px; }
+    }
 
     header h1 {
       font-size: 3rem;
@@ -529,8 +480,7 @@ html {
 </script>
 </head>
 <canvas id="stars"></canvas>
-<header class="glass-header" id="cuboid-header">
-  <div class="header-content">
+<header>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
