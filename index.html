@@ -482,9 +482,10 @@ html {
   <canvas id="dnaCanvas"></canvas>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
+  <a href="#Upcomings" class="btn">Upcomings</a>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
   <a href="#contact-me" class="btn">Contact Me</a>
-  <a href="#Upcomings" class="btn">Upcomings</a> 
+   
 </div>
 
 </header>
@@ -498,6 +499,14 @@ html {
     <img src="logo5.png" alt="Project 5" />
     <img src="logo1.png" alt="Project 5" />
   </div>
+  <script>
+  document.getElementById('Upcomings').addEventListener('click', function () {
+    document.querySelector('.Upcomings').scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+</script>
+
 <section class="upcoming-section">
   <h2 class="upcoming-title"> Upcomings</h2>
 
