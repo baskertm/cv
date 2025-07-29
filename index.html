@@ -23,16 +23,14 @@ body {
       z-index: -1;
     }
     header {
-      background-image: url('gift2.gif');
-      background-size: cover;
-      background-position: center;
-      animation: fade 10s infinite alternate;
-      text-align: center;
-      color: #00ff88;
-      padding: 100px 20px 80px;
-      position: relative;
-      box-shadow: 0 0 30px #00ffaa;
-    }
+  background: transparent;
+  text-align: center;
+  color: #00ff88;
+  padding: 100px 20px 80px;
+  position: relative;
+  box-shadow: 0 0 30px #00ffaa;
+  overflow: hidden; /* For animation containment */
+}
 
     @keyframes slideBackground {
       0% { background-position-x: 0; }
@@ -481,6 +479,7 @@ html {
 </head>
 <canvas id="stars"></canvas>
 <header>
+  <canvas id="dnaCanvas"></canvas>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
