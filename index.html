@@ -689,6 +689,9 @@ As someone deeply interested in how the digital world runs behind the scenes, I 
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `page=${page}&action=visit&device=${encodeURIComponent(device)
+        body: `page=${encodeURIComponent(page)}&action=visit&device=${encodeURIComponent(device)}&browser=${encodeURIComponent(browser)}&ip=${encodeURIComponent(ip)}`
+      });
+    });
+</script>
 </body>
 </html>
