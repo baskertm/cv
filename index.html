@@ -665,9 +665,8 @@ As someone deeply interested in how the digital world runs behind the scenes, I 
     <a href="https://baskertm.github.io/re" title="Download Resume">CV</a>
   </div>
 </div>
-
 <script>
-  // Replace this with your actual Web App URL
+  // Replace with your actual Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxoW2EwNM5RRqBWynMSfqytOzuVpbQPZpfCYfAm3KVmqtb_-lKE64EWGdXA5AOKMYf1GQ/exec";
 
   // Collect some info about the visitor
@@ -688,7 +687,22 @@ As someone deeply interested in how the digital world runs behind the scenes, I 
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `page=${page}&action=visit&device=${encodeURIComponent(device)
+        body: `page=${encodeURIComponent(page)}&action=visit&device=${encodeURIComponent(device)}&browser=${encodeURIComponent(browser)}&ip=${encodeURIComponent(ip)}`
+      });
+    })
+    .catch(error => {
+      // Optionally log the error
+      console.error("IP Fetch Error:", error);
+      // Send info without IP if failed
+      fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `page=${encodeURIComponent(page)}&action=visit&device=${encodeURIComponent(device)}&browser=${encodeURIComponent(browser)}`
+      });
+    });
 </script>
 </body>
 </html>
