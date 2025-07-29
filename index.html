@@ -466,6 +466,31 @@ html {
   transform: scale(1.05);
 }
 }
+#sticky-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Stay above other content */
+  background: white; /* Optional: for contrast */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  transition: all 0.3s;
+}
+
+/* Minimum size when scrolling */
+#sticky-buttons.minimized {
+  padding: 4px 0;
+  opacity: 0.8;
+  transform: scale(0.8);
+}
+
+/* Restore normal size when at header */
+#sticky-buttons.normal {
+  padding: 10px 0;
+  opacity: 1;
+  transform: scale(1);
+}
     </style>
 </style>
   <script>
@@ -483,6 +508,7 @@ html {
 <header>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
+  <div id="sticky-buttons">
   <a href="#upcoming-section" class="btn" id="next-btn">What next!</a>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
   <a href="#contact-me" class="btn">Contact Me</a> 
@@ -702,6 +728,24 @@ document.getElementById('next-btn').addEventListener('click', function(e) {
   const target = document.getElementById('upcoming-section');
   if (target) {
     target.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+</script>
+<script>
+const stickyButtons = document.getElementById('sticky-buttons');
+const header = document.querySelector('header'); // Adjust if your header uses a different tag or class
+
+window.addEventListener('scroll', function() {
+  // Get header's bottom position
+  const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+  if (headerBottom <= 0) {
+    // Header is out of view, minimize buttons
+    stickyButtons.classList.add('minimized');
+    stickyButtons.classList.remove('normal');
+  } else {
+    // Header is visible, restore buttons
+    stickyButtons.classList.remove('minimized');
+    stickyButtons.classList.add('normal');
   }
 });
 </script>
