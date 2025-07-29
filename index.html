@@ -731,23 +731,29 @@ document.getElementById('next-btn').addEventListener('click', function(e) {
   }
 });
 </script>
-<script>
-const stickyButtons = document.getElementById('sticky-buttons');
-const header = document.querySelector('header'); // Adjust if your header uses a different tag or class
+  ...
+  <!-- other content -->
 
-window.addEventListener('scroll', function() {
-  // Get header's bottom position
-  const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
-  if (headerBottom <= 0) {
-    // Header is out of view, minimize buttons
-    stickyButtons.classList.add('minimized');
-    stickyButtons.classList.remove('normal');
-  } else {
-    // Header is visible, restore buttons
-    stickyButtons.classList.remove('minimized');
-    stickyButtons.classList.add('normal');
-  }
-});
-</script>
+  <script>
+    const stickyButtons = document.getElementById('sticky-buttons');
+    const header = document.querySelector('header');
+
+    function checkStickyState() {
+      if (!stickyButtons || !header) return;
+      const headerBottom = header.getBoundingClientRect().bottom;
+      if (headerBottom <= 0) {
+        stickyButtons.classList.add('minimized');
+        stickyButtons.classList.remove('normal');
+      } else {
+        stickyButtons.classList.remove('minimized');
+        stickyButtons.classList.add('normal');
+      }
+    }
+
+    window.addEventListener('scroll', checkStickyState);
+    window.addEventListener('resize', checkStickyState);
+    document.addEventListener('DOMContentLoaded', checkStickyState);
+  </script>
 </body>
+</html>
 </html>
