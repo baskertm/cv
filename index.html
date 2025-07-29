@@ -483,7 +483,7 @@ html {
 <header>
   <h1>Baskar</h1>
   <p>Designer | Annotator | Customer support | AWS  </p>
-  <a href="#upcoming-section" class="btn">What next!</a> 
+  <a href="#upcoming-section" class="btn" id="next-btn">What next!</a>
   <a class="resume-button" onclick='window.location.href="https://baskertm.github.io/re";' download>Download My Resume</a>
   <a href="#contact-me" class="btn">Contact Me</a> 
 </div>
@@ -499,6 +499,9 @@ html {
     <img src="logo5.png" alt="Project 5" />
     <img src="logo1.png" alt="Project 5" />
   </div>
+<section id="upcoming-section">
+  <!-- Your upcoming content goes here -->
+</section>
 <section class="upcoming-section">
   <h2 class="upcoming-title"> Upcoming Projects & Services</h2>
 
@@ -692,6 +695,15 @@ As someone deeply interested in how the digital world runs behind the scenes, I 
         body: `page=${encodeURIComponent(page)}&action=visit&device=${encodeURIComponent(device)}&browser=${encodeURIComponent(browser)}&ip=${encodeURIComponent(ip)}`
       });
     });
+</script>
+  <script>
+document.getElementById('next-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const target = document.getElementById('upcoming-section');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+});
 </script>
 </body>
 </html>
